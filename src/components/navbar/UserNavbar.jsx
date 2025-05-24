@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // 공통 호버 스타일
 const hoverStyle =
@@ -6,6 +6,16 @@ const hoverStyle =
 
 const UserNavbar = () => {
   const nav = useNavigate();
+  const location = useLocation();
+
+  const menuItems = [
+    { name: "카테고리 필터링", path: "/category" },
+    {
+      name: "가격 범위 필터링",
+      path: "/price",
+    },
+    { name: "상품 정렬", path: "/sort" },
+  ];
 
   return (
     <>
@@ -15,15 +25,17 @@ const UserNavbar = () => {
           src="gdg-favicon.svg"
         ></img>
         <div className="flex gap-[22px]">
-          <div className={hoverStyle} onClick={() => nav("/category")}>
-            카테고리 필터링
-          </div>
-          <div className={hoverStyle} onClick={() => nav("/price")}>
-            가격 범위 필터링
-          </div>
-          <div className={hoverStyle} onClick={() => nav("/sort")}>
-            상품 정렬
-          </div>
+          {menuItems.map(({ name, path }) => (
+            <div
+              key={path}
+              onClick={() => nav(path)}
+              className={`${hoverStyle} ${
+                location.pathname === path ? "font-[600] !text-[#008CFF]" : ""
+              }`}
+            >
+              {name}
+            </div>
+          ))}
         </div>
         <button
           onClick={() => nav("/admin")}
