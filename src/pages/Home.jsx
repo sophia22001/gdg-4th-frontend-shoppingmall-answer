@@ -13,7 +13,6 @@ const Home = () => {
     switch (location.pathname) {
       case "/category":
         return <CategoryFilter />;
-
       case "/price":
         return <PriceFilter />;
       case "/sort":
