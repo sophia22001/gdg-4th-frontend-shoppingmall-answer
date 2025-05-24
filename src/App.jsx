@@ -7,10 +7,15 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <div className="flex h-screen w-screen justify-center">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/category" element={<Home />} />
+            <Route path="/price" element={<Home />} />
+            <Route path="/sort" element={<Home />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );
