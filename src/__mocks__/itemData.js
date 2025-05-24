@@ -5,3 +5,7 @@ export const itemData = [
   { id: 3, name: "상품3", price: 5000, stock: 14 },
   { id: 4, name: "상품4", price: 8000, stock: 113 },
 ];
+
+export const selectedItemData = [
+  { id: 1, name: "상품4", price: 8000, stock: 113 },
+];
