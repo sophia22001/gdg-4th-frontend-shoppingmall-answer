@@ -19,12 +19,14 @@ const PriceBracketInput = ({
     <>
       <div className="mt-[72px] flex w-full items-center gap-[19px]">
         <input
+          type="number"
           value={lowPrice}
           onChange={e => setLowPrice(e.target.value)}
           placeholder="가격 하한선 입력..."
           className="h-[43px] w-[232px] rounded-[8px] border border-[#8F8F8F] px-[16px] py-[12px]"
         />
         <input
+          type="number"
           value={highPrice}
           onChange={e => setHighPrice(e.target.value)}
           placeholder="가격 상한선 입력..."
