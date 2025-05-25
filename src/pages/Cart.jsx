@@ -1,4 +1,4 @@
-import { selectedItemData } from "../__mocks__/itemData";
+import { cartList } from "../__mocks__/itemData";
 import BlueButton from "../components/BlueButton";
 import SearchInput from "../components/input-bar/SearchInput";
 import Item from "../components/Item";
@@ -7,18 +7,18 @@ import SelectedItem from "../components/SelectedItem";
 
 const Cart = () => {
   // mockData
-  const totalCost = 500;
+  const totalCost = cartList.totalPrice;
 
   return (
     <>
       <UserNavbar />
       <div className="mt-[132px] w-[652px]">
-        <div className="flex w-[300px] flex-col">
+        <div className="flex w-[652px] flex-col">
           <div className="mb-[72px] text-[25px] font-[600]">장바구니</div>
           <div>
-            {selectedItemData.map(item => {
+            {cartList.items.map((item, index) => {
               return (
-                <div key={item.id}>
+                <div key={index}>
                   <SelectedItem {...item} />
                 </div>
               );
