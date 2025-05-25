@@ -4,6 +4,7 @@ import PriceFilter from "../components/Contents/PriceFilter";
 import ItemSort from "../components/Contents/ItemSort";
 import DefaultContents from "../components/Contents/DefaultContents";
 import { useLocation, useNavigate } from "react-router-dom";
+import ApiDefaultContents from "../components/Contents/ApiDefaultContents";
 
 const Home = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Home = () => {
       case "/sort":
         return <ItemSort />;
       default:
-        return <DefaultContents />;
+        return <ApiDefaultContents />;
     }
   };
 
