@@ -30,7 +30,7 @@ const ToggleInput = ({ sortType, category, setState, togglePlaceholder }) => {
 
   // 카테고리 변경 확인
   useEffect(() => {
-    console.log("category 변경됨:", category);
+    console.log("sortType 변경됨:", sortType);
   }, [sortType]);
 
   // 카테고리 변경 확인
