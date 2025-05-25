@@ -14,15 +14,11 @@ const PriceFilter = () => {
   // 검색된 데이터 배열
   const [priceResult, setPriceResult] = useState(priceSelectedData.items);
 
-  // 검색 버튼이 클릭되었는지. 검색 여부
-  const [searchClicked, setSearchClicked] = useState(false);
-
   const showItems = location.pathname === "/price" ? priceResult : [];
   const isEmpty = showItems.length === 0;
 
   function handleSearch(low, high) {
     console.log("검색 클릭됨");
-    setSearchClicked(true);
     console.log(low, high);
   }
 
