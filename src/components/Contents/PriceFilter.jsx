@@ -53,18 +53,6 @@ const PriceFilter = () => {
             </div>
           )}
         </div>
-        {/* {itemData.length > 0 ? (
-          <div className="mt-[72px] mb-[200px]">
-            <ItemList items={priceSelectedData} />
-          </div>
-        ) : (
-          <div className="absolute top-1/2 left-1/2 block h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 transform">
-            <img src={GDGlogo} style={{ opacity: 0.15 }} />
-            <div className="absolute top-[80%] flex w-full justify-center text-[16px] text-[#8F8F8F]">
-              검색 결과가 없습니다.
-            </div>
-          </div>
-        )} */}
       </div>
     </>
   );
