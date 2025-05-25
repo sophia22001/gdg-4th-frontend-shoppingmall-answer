@@ -25,3 +25,64 @@ export const cartList = {
     { name: "장바구니 상품3", count: 5, price: 500 },
   ],
 };
+
+// 의류로 카테고리 선택된 상품 리스트 api
+export const categoryData = [
+  {
+    id: 1,
+    category: "의류",
+    name: "원피스",
+    price: 1000,
+    stock: 13,
+  },
+  {
+    id: 2,
+    category: "의류",
+    name: "청바지",
+    price: 1000,
+    stock: 13,
+  },
+];
+
+// 100~1000인 가격 검색된 데이터 리스트
+export const priceSelectedData = {
+  low: 100,
+  high: 10000,
+
+  items: [
+    {
+      id: 1,
+      name: "원피스",
+      price: 500,
+      stock: 13,
+    },
+    {
+      id: 2,
+      name: "청바지",
+      price: 200,
+      stock: 13,
+    },
+  ],
+};
+
+// 정렬된 결과 리스트 api
+export const sortedData = [
+  {
+    id: 1,
+    name: "가나",
+    price: 200,
+    stock: 13,
+  },
+  {
+    id: 2,
+    name: "나다다",
+    price: 200,
+    stock: 13,
+  },
+  {
+    id: 2,
+    name: "다라",
+    price: 200,
+    stock: 13,
+  },
+];
