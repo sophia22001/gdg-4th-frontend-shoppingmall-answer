@@ -1,6 +1,9 @@
 import BlueButton from "./BlueButton";
 
-const Item = ({ name, price }) => {
+const Item = ({ name, price, stock }) => {
+  console.log("name: ", name);
+  console.log("price: ", price);
+  console.log("stocks", stock);
   return (
     <>
       <div className="mb-[32px] flex items-center justify-between rounded-[8px] border border-[#8f8f8f] p-[24px]">
