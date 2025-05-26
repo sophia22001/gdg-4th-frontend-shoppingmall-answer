@@ -3,35 +3,44 @@ import GDGlogo from "../../assets/gdg-background.png";
 import ItemList from "../ItemList";
 import SearchInput from "../input-bar/SearchInput";
 import { useState } from "react";
-import axios from "axios";
 import { useEffect } from "react";
+import baseApi from "../../api/baseApi";
 
-const ApiDefaultContents = () => {
-  // 검색어
-  const [name, setNameQuery] = useState("");
+const ApiDefaultContents = ({ position }) => {
+  // 검색어 (상품명명)
+  const [itemName, setitemName] = useState("");
   // 검색 버튼이 클릭되었는지. 검색 여부
   const [searchClicked, setSearchClicked] = useState(false);
   // 검색된 데이터 배열
   const [searchResult, setSearchResult] = useState([]);
   // 전체 데이터 배열
   const [allItems, setAllItems] = useState([]);
+  // 유저 이름
+  const [name, setName] = useState("홍길동");
 
+  // ----------------------------------------------------------
   const showItems = searchClicked ? searchResult : allItems;
+  console.log(showItems);
   const isEmpty = showItems.length === 0;
 
-  // ---------api--------------------------------
+  // ---------api----------------------------------------------
   // 모든 전체 데이터 불러오기
   useEffect(() => {
     async function fetchAllItems() {
       try {
-        const response = await axios.get("/items");
+        const response = await baseApi.get("/items");
+        console.log(response.data);
         setAllItems(response.data);
+        console.log("전체 데이터 가져오기 성공");
       } catch (error) {
-        console.error("검색어 전달 실패:", error);
+        console.error("전체 데이터 가져오기 실패:", error);
       }
     }
     fetchAllItems();
   }, []);
+
+  const isEmptyObject = obj =>
+    obj && typeof obj === "object" && Object.keys(obj).length === 0;
 
   // 클릭되면 searchClicked를 true로 설정
   async function handleSearch(query) {
@@ -42,9 +51,23 @@ const ApiDefaultContents = () => {
     // 검색한 name을 서버에 전송
     // 검색이 안되면 빈 배열을 반환
     try {
-      const response = await axios.post("/items/search", { name });
-      setSearchResult(response.data ? [response.data] : []);
-      console.log("반환 데이터: ", response.data);
+      const response = await baseApi.post("/items/search", {
+        name,
+        position,
+        itemName,
+      });
+
+      const data = response.data;
+
+      if (isEmptyObject(data)) {
+        setSearchResult([]); // 검색 결과 없음
+      } else {
+        setSearchResult([data]); // 검색 결과 있음 (배열로 감싸기)
+      }
+
+      // setSearchResult(response.data ? [response.data] : []);
+      console.log("검색 반환 데이터: ", response.data);
+      console.log("검색어 보내기 성공");
     } catch (error) {
       console.log("Error POST data: ", error);
       setSearchResult([]);
@@ -55,8 +78,8 @@ const ApiDefaultContents = () => {
     <>
       <div className="mt-[60px] w-[652px]">
         <SearchInput
-          query={name}
-          setQuery={setNameQuery}
+          itemName={itemName}
+          setItemName={setitemName}
           handleSearch={() => handleSearch(name)}
         />
 
