@@ -20,9 +20,9 @@ export const searchedData = {
 export const cartList = {
   totalPrice: 20000,
   items: [
-    { name: "장바구니 상품1", count: 5, price: 1000 },
-    { name: "장바구니 상품2", count: 5, price: 7000 },
-    { name: "장바구니 상품3", count: 5, price: 500 },
+    { name: "구매된 상품1", count: 5, price: 1000 },
+    { name: "구매된 상품2", count: 5, price: 7000 },
+    { name: "구매된 상품3", count: 5, price: 500 },
   ],
 };
 
