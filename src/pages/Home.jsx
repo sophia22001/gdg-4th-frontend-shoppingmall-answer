@@ -2,25 +2,42 @@ import UserNavbar from "../components/navbar/UserNavbar";
 import CategoryFilter from "../components/Contents/CategoryFilter";
 import PriceFilter from "../components/Contents/PriceFilter";
 import ItemSort from "../components/Contents/ItemSort";
-import DefaultContents from "../components/Contents/DefaultContents";
+// import DefaultContents from "../components/Contents/DefaultContents";
 import { useLocation, useNavigate } from "react-router-dom";
 import ApiDefaultContents from "../components/Contents/ApiDefaultContents";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Home = () => {
   const location = useLocation();
   const nav = useNavigate();
 
+  // 역할 - CONSUMER, ADMIN
+  const [position, setPosition] = useState("ADMIN"); // 기본값: ADMIN
+
+  useEffect(() => {
+    if (
+      location.pathname === "/category" ||
+      location.pathname === "/price" ||
+      location.pathname === "/sort"
+    ) {
+      setPosition("CONSUMER");
+    } else {
+      setPosition("ADMIN");
+    }
+  }, [location.pathname]);
+
   // 메뉴바 선택에 따른 콘텐츠 렌더링
   const renderContent = () => {
     switch (location.pathname) {
       case "/category":
-        return <CategoryFilter />;
+        return <CategoryFilter position={position} />;
       case "/price":
-        return <PriceFilter />;
+        return <PriceFilter position={position} />;
       case "/sort":
-        return <ItemSort />;
+        return <ItemSort position={position} />;
       default:
-        return <ApiDefaultContents />;
+        return <ApiDefaultContents position={position} />;
     }
   };
 
