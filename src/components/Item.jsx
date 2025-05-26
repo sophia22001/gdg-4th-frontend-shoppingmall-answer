@@ -1,9 +1,10 @@
 import BlueButton from "./BlueButton";
 
-const Item = ({ name, price, stock }) => {
-  console.log("name: ", name);
-  console.log("price: ", price);
-  console.log("stocks", stock);
+const Item = ({ name, price }) => {
+  //console.log("name: ", name);
+  //console.log("price: ", price);
+  //console.log("stocks", stock); // 콘솔 찍으려면 props로 stocks를 가져와야함.
+
   return (
     <>
       <div className="mb-[32px] flex items-center justify-between rounded-[8px] border border-[#8f8f8f] p-[24px]">
