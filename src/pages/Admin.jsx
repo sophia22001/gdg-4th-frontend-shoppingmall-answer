@@ -5,7 +5,7 @@ const Admin = () => {
   return (
     <>
       <AdminNavbar />
-      <div class="mt-[132px] w-[652px]">
+      <div className="mt-[132px] w-[652px]">
         <section className="flex flex-col gap-[28px]">
           <div className="text-[20px] font-[600]">상품 등록</div>
           <StockBox section2Exist={true} comment={true} />
