@@ -16,7 +16,7 @@ const ApiDefaultContents = ({ position }) => {
   // 전체 데이터 배열
   const [allItems, setAllItems] = useState([]);
   // 유저 이름
-  const [name, setName] = useState("홍길동");
+  const [userName, setUserName] = useState("홍길동");
 
   // ----------------------------------------------------------
   const showItems = searchClicked ? searchResult : allItems;
@@ -43,16 +43,16 @@ const ApiDefaultContents = ({ position }) => {
     obj && typeof obj === "object" && Object.keys(obj).length === 0;
 
   // 클릭되면 searchClicked를 true로 설정
-  async function handleSearch(query) {
+  async function handleSearch(queryItemName) {
     console.log("검색 클릭됨");
     setSearchClicked(true);
-    console.log(query);
+    console.log(queryItemName);
 
     // 검색한 name을 서버에 전송
     // 검색이 안되면 빈 배열을 반환
     try {
       const response = await baseApi.post("/items/search", {
-        name,
+        userName,
         position,
         itemName,
       });
@@ -80,7 +80,7 @@ const ApiDefaultContents = ({ position }) => {
         <SearchInput
           itemName={itemName}
           setItemName={setitemName}
-          handleSearch={() => handleSearch(name)}
+          handleSearch={() => handleSearch(itemName)}
         />
 
         <div>
