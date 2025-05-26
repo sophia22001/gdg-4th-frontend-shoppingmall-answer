@@ -2,13 +2,13 @@
 
 import BlueButton from "../BlueButton";
 
-const SearchInput = ({ query, setQuery, handleSearch }) => {
+const SearchInput = ({ itemName, setItemName, handleSearch }) => {
   return (
     <>
       <div className="mt-[72px] flex w-full items-center gap-[20px]">
         <input
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          value={itemName}
+          onChange={e => setItemName(e.target.value)}
           className="h-[43px] w-[484px] rounded-[8px] border border-[#8F8F8F] px-[16px] py-[12px]"
           placeholder="상품 검색..."
         />
