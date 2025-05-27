@@ -72,12 +72,13 @@ const Home = () => {
       console.log("구매하기 성공");
 
       const data = response.data;
+      // 받는 데이터: { totalPrice, items: [ {itemName, price, count} ] }
 
       alert("구매 완료!");
 
       // 성공하면 구매완료 페이지로, 응답 데이터를 Cart로 넘기기
       // useLocation.state 이용하기
-      nav("/cart", { state: { buyResult: data } });
+      nav("/purchased", { state: { buyResult: data } });
     } catch (error) {
       console.error("구매하기 실패:", error);
       alert("구매 실패!");
