@@ -2,7 +2,6 @@ import { useState } from "react";
 import BlueButton from "../BlueButton";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { twMerge } from "tailwind-merge";
 
 // 고정 리스트
 const categoryList = [
@@ -17,13 +16,7 @@ const sortList = [
   { id: 2, name: "가격" },
 ];
 
-const ToggleInput = ({
-  sortType,
-  category,
-  setState,
-  togglePlaceholder,
-  className,
-}) => {
+const ToggleInput = ({ sortType, category, setState, togglePlaceholder }) => {
   const [active, setActive] = useState(false);
 
   const location = useLocation();
@@ -53,17 +46,13 @@ const ToggleInput = ({
 
   return (
     <>
-      <div className="relative flex w-full items-center gap-[20px]">
+      <div className="relative mt-[72px] flex w-full items-center gap-[20px]">
         <input
           readOnly
           onClick={onClickListing}
           value={location.pathname === "/sort" ? sortType : category}
           placeholder={togglePlaceholder}
-          className={twMerge(
-            "h-[43px] w-[200px] cursor-pointer rounded-[8px] border border-[#8F8F8F] px-[16px] py-[12px]",
-            className
-          )}
-          //className="h-[43px] w-[200px] cursor-pointer rounded-[8px] border border-[#8F8F8F] px-[16px] py-[12px]"
+          className="h-[43px] w-[200px] cursor-pointer rounded-[8px] border border-[#8F8F8F] px-[16px] py-[12px]"
         />
         {active && location.pathname === "/sort" ? (
           <div className="absolute top-full left-0">
@@ -78,18 +67,12 @@ const ToggleInput = ({
             ))}
           </div>
         ) : null}
-        {active &&
-        (location.pathname === "/category" ||
-          location.pathname === "/admin") ? (
+        {active && location.pathname === "/category" ? (
           <div className="absolute top-full left-0">
             {categoryList.map(cat => (
               <div
                 onClick={() => handleSelect(cat.name)}
-                //className="h-[39px] w-[205px] rounded-[8px] border border-[#8F8F8F] px-[12px] py-[6px] text-[14px] placeholder:text-[14px]"
-                className={twMerge(
-                  "h-[43px] w-[200px] rounded-[8px] border border-[#8F8F8F] bg-[#e8e8e8] px-[16px] py-[12px]",
-                  className
-                )}
+                className="h-[43px] w-[200px] rounded-[8px] border border-[#8F8F8F] bg-[#e8e8e8] px-[16px] py-[12px]"
                 key={cat.id}
               >
                 {cat.name}
