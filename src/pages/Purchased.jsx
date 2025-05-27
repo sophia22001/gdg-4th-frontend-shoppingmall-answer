@@ -18,6 +18,7 @@ const Purchased = () => {
   // 응답에서 넘어온 총 금액과 items 배열
   const totalPrice = buyResult.totalPrice;
   const items = buyResult.items;
+  console.log(items); // items: [ {itemName, price, count} ]
 
   return (
     <>
