@@ -41,6 +41,9 @@ const StockBox = ({
       });
 
       console.log("등록 완료 - 반환: ", response.data);
+
+      setItemName(""); // 입력 초기화
+      setCategory(""); // 입력 초기화
       alert("상품이 등록되었습니다.");
     } catch (error) {
       console.log("Error POST data: ", error);
@@ -64,6 +67,8 @@ const StockBox = ({
         count,
       });
       console.log("추가 완료 - 반환 데이터: ", response.data);
+
+      setItemName(""); // 입력 초기화
       alert("재고가 추가되었습니다.");
     } catch (error) {
       console.log("Error POST data: ", error);
@@ -80,12 +85,15 @@ const StockBox = ({
     }
 
     try {
-      const response = await baseApi.delete("/items/delete", {
+      const response = await baseApi.post("/items/delete", {
         userName,
         position,
         items: [{ itemName }],
       });
+
       console.log("삭제 완료 - 반환 데이터: ", response.data);
+
+      setItemName(""); // 입력 초기화
       alert("상품이 삭제되었습니다.");
     } catch (error) {
       console.log("Error POST data: ", error);
