@@ -76,6 +76,9 @@ const Home = () => {
 
       alert("구매 완료!");
 
+      // 구매 내역을 localStorage 에 저장하기 - '내 구매 내역' 버튼 기능을 위한.
+      localStorage.setItem("lastBuyResult", JSON.stringify(data));
+
       // 성공하면 구매완료 페이지로, 응답 데이터를 Cart로 넘기기
       // useLocation.state 이용하기
       nav("/purchased", { state: { buyResult: data } });
