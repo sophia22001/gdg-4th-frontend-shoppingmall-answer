@@ -20,7 +20,7 @@ const Item = ({ itemName, price, quantity }) => {
     // setQuantity(quantity);
     setChangingText("추가 완료");
     handleAddItem({ itemName, price, count });
-    // 여기에 api 보내야 하나 ???
+    setCount(""); //초기화
   };
 
   return (
