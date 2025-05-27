@@ -19,7 +19,7 @@ const ItemSort = ({ position }) => {
 
   return (
     <>
-      <div className="mt-[60px] w-[652px]">
+      <div className="mt-[132px] w-[652px]">
         <ToggleInput
           sortType={sortType}
           setState={setSortType}

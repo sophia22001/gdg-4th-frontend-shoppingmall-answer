@@ -7,14 +7,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ApiDefaultContents from "../components/Contents/ApiDefaultContents";
 import { useState } from "react";
 import { useEffect } from "react";
+import baseApi from "../api/baseApi";
+import { useCart } from "../contexts/CartContext";
 
 const Home = () => {
+  const { cartItems } = useCart();
   const location = useLocation();
   const nav = useNavigate();
 
   // 역할 - CONSUMER, ADMIN
   const [position, setPosition] = useState("ADMIN"); // 기본값: ADMIN
 
+  // pathname 이 바뀔 때마다 역할 체크
   useEffect(() => {
     if (
       location.pathname === "/category" ||
@@ -41,13 +45,58 @@ const Home = () => {
     }
   };
 
+  // 장바구니 구매에 필요한 상태
+  const [userName, setUserName] = useState("홍길동");
+
+  // 여러 개의 상품처리 관리 상태
+  const [items, setItems] = useState([{ itemName: "", count: 0 }]);
+
+  // 구매 POST 보낼 데이터
+  const buyItemData = { userName, position, items: cartItems };
+
+  // 구매 POST 받을 데이터
+  // {totalPrice, items: [ {itemName, price, count} ]}; // 설명 주석
+
+  // ----장바구니 구매하기 api ------------------------------
+  async function handleBuy() {
+    console.log("구매하기 버튼 클릭됨");
+
+    if (items.length === 0) {
+      alert("장바구니로 추가된 상품이 없습니다.");
+      return;
+    }
+
+    try {
+      const response = await baseApi.post("items/buy", buyItemData);
+      console.log(response.data);
+      console.log("구매하기 성공");
+
+      const data = response.data;
+      // 받는 데이터: { totalPrice, items: [ {itemName, price, count} ] }
+
+      alert("구매 완료!");
+
+      // 구매 내역을 localStorage 에 저장하기 - '내 구매 내역' 버튼 기능을 위한.
+      localStorage.setItem("lastBuyResult", JSON.stringify(data));
+
+      // 성공하면 구매완료 페이지로, 응답 데이터를 Cart로 넘기기
+      // useLocation.state 이용하기
+      nav("/purchased", { state: { buyResult: data } });
+    } catch (error) {
+      console.error("구매하기 실패:", error);
+      alert("구매 실패!");
+    }
+  }
+
+  //----------------------------------------------------------
+
   return (
     <>
       <UserNavbar />
       {renderContent()}
 
       <button
-        onClick={() => nav("/cart")}
+        onClick={handleBuy}
         className="fixed bottom-[40px] w-[652px] rounded-[8px] border-[2px] border-[#008CFF] bg-white px-[16px] py-[12px] text-[#008CFF] hover:cursor-pointer"
       >
         장바구니 구매하기
