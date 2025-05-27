@@ -13,13 +13,13 @@ const Item = ({ itemName, price, quantity }) => {
   // "추가 완료" 문구로 변경되고 그 상품은 서버에 POST해준다.
   const onClickCart = () => {
     console.log("장바구니 버튼 클릭됨");
-    if (!quantity) {
+    if (!count) {
       alert("개수를 입력해주세요.");
       return;
     }
     // setQuantity(quantity);
     setChangingText("추가 완료");
-    handleAddItem({ itemName, price, quantity });
+    handleAddItem({ itemName, price, count });
     // 여기에 api 보내야 하나 ???
   };
 
