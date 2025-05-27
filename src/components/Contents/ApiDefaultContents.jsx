@@ -9,22 +9,22 @@ import baseApi from "../../api/baseApi";
 const ApiDefaultContents = ({ position }) => {
   // 검색어 (상품명명)
   const [itemName, setitemName] = useState("");
+  // 유저 이름
+  const [userName, setUserName] = useState("홍길동");
+
   // 검색 버튼이 클릭되었는지. 검색 여부
   const [searchClicked, setSearchClicked] = useState(false);
   // 검색된 데이터 배열
   const [searchResult, setSearchResult] = useState([]);
   // 전체 데이터 배열
   const [allItems, setAllItems] = useState([]);
-  // 유저 이름
-  const [name, setName] = useState("홍길동");
 
   // ----------------------------------------------------------
   const showItems = searchClicked ? searchResult : allItems;
   console.log(showItems);
   const isEmpty = showItems.length === 0;
 
-  // ---------api----------------------------------------------
-  // 모든 전체 데이터 불러오기
+  // 전체 상품 불러오기 api------------------------------------
   useEffect(() => {
     async function fetchAllItems() {
       try {
@@ -42,17 +42,18 @@ const ApiDefaultContents = ({ position }) => {
   const isEmptyObject = obj =>
     obj && typeof obj === "object" && Object.keys(obj).length === 0;
 
+  // 검색 api -------------------------------------------------------------
   // 클릭되면 searchClicked를 true로 설정
-  async function handleSearch(query) {
+  async function handleSearch(queryItemName) {
     console.log("검색 클릭됨");
     setSearchClicked(true);
-    console.log(query);
+    console.log(queryItemName);
 
     // 검색한 name을 서버에 전송
     // 검색이 안되면 빈 배열을 반환
     try {
       const response = await baseApi.post("/items/search", {
-        name,
+        userName,
         position,
         itemName,
       });
@@ -80,7 +81,7 @@ const ApiDefaultContents = ({ position }) => {
         <SearchInput
           itemName={itemName}
           setItemName={setitemName}
-          handleSearch={() => handleSearch(name)}
+          handleSearch={() => handleSearch(itemName)}
         />
 
         <div>
