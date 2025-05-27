@@ -1,12 +1,23 @@
-# React + Vite
+### React + Vite + pnpm + js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## <프론트 page url>
 
-Currently, two official plugins are available:
+- (유저) 전체 가져오기 & 검색: /
+- (유저) 구매: /
+- (유저) 구매 완료: /purchased
+- ➖
+- (관리자) 상품 등록: /admin
+- (관리자) 재고 추가: /admin
+- (관리자) 상품 삭제: /admin
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## <벡엔드 api url>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- (유저) 전체 가져오기: /items
+- (유저) 검색: /items/search
+- (유저) 구매: /items/buy
+- ➖
+- (관리자) 상품 등록: /items/register
+- (관리자) 재고 추가: /items/increase
+- (관리자) 상품 삭제: /items/delete
