@@ -2,7 +2,7 @@ import { useState } from "react";
 import BlueButton from "./BlueButton";
 import { useCart } from "../contexts/CartContext";
 
-const Item = ({ itemName, price, quantity = 1 }) => {
+const Item = ({ itemName, price, quantity }) => {
   // quantity: 남은 수량
 
   const { handleAddItem } = useCart();
@@ -12,12 +12,15 @@ const Item = ({ itemName, price, quantity = 1 }) => {
   // "장바구니" 버튼 클릭하면,
   // "추가 완료" 문구로 변경되고 그 상품은 서버에 POST해준다.
   const onClickCart = () => {
-    if (!count) {
+    console.log("장바구니 버튼 클릭됨");
+    if (!quantity) {
       alert("개수를 입력해주세요.");
       return;
     }
+    // setQuantity(quantity);
     setChangingText("추가 완료");
-    handleAddItem({ itemName, price, count });
+    handleAddItem({ itemName, price, quantity });
+    // 여기에 api 보내야 하나 ???
   };
 
   return (
