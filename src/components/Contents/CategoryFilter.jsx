@@ -19,7 +19,7 @@ const CategoryFilter = ({ position }) => {
 
   return (
     <>
-      <div className="mt-[132px] w-[652px]">
+      <div className="mt-[60px] w-[652px]">
         <ToggleInput
           category={category}
           setState={setCategory}
